@@ -13,8 +13,7 @@ class Solution {
         
             answer[i] = closest;
         }
-        
-        
+       
         return answer;
     }
 }
