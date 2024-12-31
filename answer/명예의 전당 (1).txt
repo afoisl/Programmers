@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution {
+    public int[] solution(int k, int[] score) {
+        int[] answer = new int[score.length];
+        // 명예의 전당
+        ArrayList<Integer> li = new ArrayList<>(k); 
+        
+        for (int i = 0; i < score.length; i++ ) {
+            li.add(score[i]);
+            // 오름차순 정렬
+            Collections.sort(li);
+            if (li.size() > k) {
+                // 명예의 전당에서 제일 작은 숫자 삭제
+                li.remove(0); 
+            }
+            // 최하위 점수 배열에 넣기
+            answer[i] = li.get(0);
+        }
+        return answer;
+    }
+}
