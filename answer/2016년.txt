@@ -1,0 +1,14 @@
+import java.time.*;
+
+class Solution {
+    public String solution(int a, int b) {
+        String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+        
+        LocalDate date = LocalDate.of(2016, a, b);
+	// getDayOfWeek().getValue() 는 월요일을 1로, 일요일을 7로 반환
+	// 일요일에 해당하는 경우 0 으로 만들어서 "SUN" 에 매핑 
+        int day = date.getDayOfWeek().getValue() % 7;
+        
+        return days[day];
+    }
+}
