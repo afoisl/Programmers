@@ -1,0 +1,21 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int k, int m, int[] score) {
+        int answer = 0;
+        
+        int[] sortedScore = Arrays.stream(score)
+                                .boxed() // Integer로 변환
+                                .sorted((a, b) -> b - a) // 내림차순 정렬
+                                .mapToInt(Integer::intValue)
+                                .toArray();
+        
+        for (int i = 0; i <= sortedScore.length - m; i += m) {
+            int[] box = Arrays.copyOfRange(sortedScore, i, i + m);
+            int minScore = sortedScore[i + m - 1];
+            answer += minScore * m;
+        }
+        
+        return answer;
+    }
+}
