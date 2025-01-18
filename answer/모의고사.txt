@@ -1,0 +1,35 @@
+import java.util.*;
+import java.util.stream.*;
+
+class Solution {
+    public int[] solution(int[] answers) {
+        int[] student1 = {1, 2, 3, 4, 5}; 
+        int[] student2 = {2, 1, 2, 3, 2, 4, 2, 5}; 
+        int[] student3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
+        
+        int[] scores = new int[3];
+        for(int i=0;i<answers.length;i++){
+            int answer = answers[i];
+            
+            //학생1
+            if(student1[i%student1.length] == answer) scores[0] += 1;
+            //학생2
+            if(student2[i%student2.length] == answer) scores[1] += 1;
+            //학생3
+            if(student3[i%student3.length] == answer) scores[2] += 1;
+        }
+        
+        int max = Arrays.stream(scores).max().orElse(0);
+        
+        List<Integer> students = new ArrayList<>();
+        for(int i=0;i<scores.length;i++){
+            if(scores[i] == max){
+                students.add(i+1);
+            }
+        }
+        
+        return students.stream()
+            .mapToInt(Integer::intValue)
+            .toArray();
+    }
+}
